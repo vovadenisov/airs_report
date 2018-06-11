@@ -1,0 +1,9 @@
+export const LOAD_AIRPORTS_START = 'report/LOAD_AIRPORTS_START';
+export const LOAD_AIRPORTS_SUCCESS = 'report/LOAD_AIRPORTS_SUCCESS';
+export const LOAD_AIRPORTS_FAIL = 'report/LOAD_AIRPORTS_FAIL';
+export const LOAD_PLANES_START = 'report/LOAD_PLANES_START';
+export const LOAD_PLANES_SUCCESS = 'report/LOAD_PLANES_SUCCESS';
+export const LOAD_PLANES_FAIL = 'report/LOAD_PLANES_FAIL';
+export const LOAD_REPORT_START = 'report/LOAD_REPORT_START';
+export const LOAD_REPORT_SUCCESS = 'report/LOAD_REPORT_SUCCESS';
+export const LOAD_REPORT_FAIL = 'report/LOAD_REPORT_FAIL';
