@@ -53,8 +53,9 @@ SECRET_KEY = config_get('global', 'SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+CONFIG_ALLOWED_HOSTS = config.get('global', 'ALLOWED_HOSTS')
 
+ALLOWED_HOSTS = [CONFIG_ALLOWED_HOSTS]
 
 # Application definition
 

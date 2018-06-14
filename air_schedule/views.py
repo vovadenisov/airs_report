@@ -1,6 +1,6 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from rest_framework.generics import ListAPIView
 from air_schedule.models import Airport, Plane
@@ -42,13 +42,13 @@ def calculate(start_date_str, end_date_str, airport):
     return [(air, airs[air])for air in airs]
 
 
-@require_POST
 def show_report(request, airport_pk):
-    data = json.loads(request.body)
-    start_date = data.get('start_date')
-    end_date = data.get('end_date')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    if datetime.strptime(start_date, '%d.%m.%Y') > datetime.strptime(end_date, '%d.%m.%Y'):
+        return HttpResponse(status=400)
     result = calculate(start_date, end_date, airport_pk)
-    return JsonResponse([{'plane': item[0], 'flight_count': item[1]} for item in result])
+    return JsonResponse({'report': [{'plane': item[0], 'flight_count': item[1]} for item in result]})
 
 
 class PlaneList(ListAPIView):

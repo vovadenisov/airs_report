@@ -1,34 +1,34 @@
 import update from 'immutability-helper';
 import {
-    LOAD_PLANES_START, LOAD_PLANES_SUCCESS, LOAD_PLANES_FAIL
+    LOAD_REPORT_START, LOAD_REPORT_SUCCESS, LOAD_REPORT_FAIL
 } from '../constants/actionConstants';
 
 const defaultState = {
-    planes: {},
+    reports: {},
     loadSuccess: false,
     fail: false,
 };
 
 
-export const planes = (state = defaultState, action) => {
+export const reports = (state = defaultState, action) => {
     switch (action.type) {
-        case LOAD_PLANES_START:
+        case LOAD_REPORT_START:
             return update(state, {
                 loadSuccess: {
                     $set: false
                 },
             });
 
-        case LOAD_PLANES_SUCCESS:
+        case LOAD_REPORT_SUCCESS:
             if (action.payload) {
-                const planesObj = {}
-                for (const item of action.payload){
-                    planesObj[item.id] = item.name
-                }
                 return update(state, {
-                    planes: {
-                        $set: planesObj
-                    },
+                    reports: reports => update(reports || {}, {
+                        [action.meta.id]: id => update(id || {}, {
+                            [`${action.meta.start}${action.meta.end}`]: {
+                                $set: action.payload.report
+                            }
+                        }),
+                    }),
                     fail: {
                         $set: false,
                     },
@@ -39,7 +39,7 @@ export const planes = (state = defaultState, action) => {
             }
             return state;
 
-        case LOAD_PLANES_FAIL:
+        case LOAD_REPORT_FAIL:
             return update(state, {
                 fail: {
                     $set: true

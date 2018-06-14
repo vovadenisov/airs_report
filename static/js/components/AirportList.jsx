@@ -3,12 +3,12 @@ import { Container, ListGroup, ListGroupItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import { loadAirports } from '../actions/loadAirports';
-
+import { push } from 'react-router-redux';
 
 export class AirportListComponent extends Component{
     static propTypes = {
-        loadAirports: PropTypes.func.isRequired,
         airports: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.number,
             name: PropTypes.string,
@@ -19,14 +19,11 @@ export class AirportListComponent extends Component{
         airports: []
     };
 
-    componentDidMount(){
-        console.log('123');
-        this.props.loadAirports()
-    }
-
     render(){
         const airports = this.props.airports.map(airport => (
-            <ListGroupItem key={ airport.id } className="usable-item">{airport.name}</ListGroupItem>
+            <ListGroupItem onClick={ () => this.props.push(`/${airport.id}/`) } key={ airport.id } className="usable-item">
+                {airport.name}
+            </ListGroupItem>
         ));
 
         return(
@@ -43,6 +40,7 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators(
         {
             loadAirports,
+            push,
         },
         dispatch,
     )

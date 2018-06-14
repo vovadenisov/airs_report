@@ -2,9 +2,9 @@
   "name": "air",
   "version": "1.0.0",
   "scripts": {
-    "setup": "cp package.json ../package.json && npm install --prefix='../'",
-    "build": "rm -rf static/dist/* && $(npm bin --prefix='../')/webpack --config webpack.prod.config.js -p",
-    "build-fast": " rm -rf static/dist/* && $(npm bin --prefix='../')/webpack --config webpack.prod.config.js",
+    "setup": "npm install",
+    "build": "rm -rf static/dist/* && $(npm bin)/webpack --config webpack.prod.config.js -p",
+    "build-fast": " rm -rf static/dist/* && $(npm bin)/webpack --config webpack.prod.config.js",
     "watch": "node server.js",
     "lint": "eslint static/js"
   },
@@ -21,6 +21,7 @@
     "npm": "^6.1.0",
     "prop-types": "^15.5.8",
     "react": "^16.3.0",
+    "react-datepicker": "^1.5.0",
     "react-dom": "^16.3.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

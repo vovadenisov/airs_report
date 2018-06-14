@@ -13,3 +13,7 @@ body {
 .usable-item{
     cursor: pointer;
 }
+
+.report-row{
+    margin-bottom: 12px;
+}
