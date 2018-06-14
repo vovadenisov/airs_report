@@ -1,7 +1,8 @@
 # airs_report
 
-# скопировать docker-compose.yml файл
-# создать папку conf (дефолтный конфиг в папке deploy) на уровень выше docker-compose.yml файла
+скопировать docker-compose.yml файл
+
+создать папку conf (дефолтный конфиг в папке deploy) на уровень выше docker-compose.yml файла
 
 # в конфиге указать:
 
