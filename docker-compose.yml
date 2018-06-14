@@ -15,7 +15,7 @@ services:
     networks:
       - air
   airs-gunicorn:
-    image: vovadenisov/airs:1.5
+    image: vovadenisov/airs:1.6
     ports:
       - "8000:8000"
     volumes:
